@@ -47,7 +47,20 @@ public class UwUBot
         else if(findKeyword(statement, "I play games", 0) >= 0)
         {
             response = "What games do you play?";
-        }else if(findKeyword(statement, "lol", 0) >= 0)
+        }
+        else if(findKeyword(statement, "pepehands", 0) >= 0)
+        {
+            response = "feelsbadman";
+        }
+        else if(findKeyword(statement, "feelsbadman", 0) >= 0)
+        {
+            response = "pepehands";
+        }
+        else if(findKeyword(statement, "XD", 0) >= 0)
+        {
+            response = "lol";
+        }
+        else if(findKeyword(statement, "lol", 0) >= 0)
         {
             response = "XD";
         }
@@ -59,7 +72,7 @@ public class UwUBot
             response = transformNameStatement(statement);
         } else if(findKeyword(statement, "your name") >= 0)
         {
-            response = "My name is, UwU! Nice to meet you!";
+            response = "My name is, UwU!";
         }
         else if (statement.length() == 0)
         {
