@@ -6,8 +6,8 @@
  *</li><li>
  *      Will transform statements as well as react to keywords
  *</li></ul>
- * @author Laurie White
- * @version April 2012
+ * @author Nick Rochhi, Roy Lin, Catrina Mai
+ * @version November / December 2018
  *
  */
 public class UwUBot
@@ -86,7 +86,7 @@ public class UwUBot
         || findKeyword(statement, "smash bros") >= 0
         || findKeyword(statement, "halo") >= 0
         || findKeyword(statement, "pokemon") >= 0
-        || findKeyword(statement, "@@@@@@@@@@@@@") >= 0)
+        )
         {
             response = "Tell me more about the games you play.";
         }
@@ -392,7 +392,7 @@ public class UwUBot
         {
             response = "You don't say.";
         }
-        else if (whichResponse == 3)
+        else if (whichResponse == 4)
         {
             response = "Hehe. No reponse.";
         }
