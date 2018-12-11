@@ -40,6 +40,10 @@ public class UwUBot
         || findKeyword(statement, "greetings") >= 0)
         {
             response = "Hello!";
+        }
+        else if(findKeyword(statement, "I like", 0) >= 0)
+        {
+            response = transformILikeStatement(statement);
         }else if (findKeyword(statement, "my name is") >= 0)
         {
             response = transformNameStatement(statement);
@@ -189,7 +193,29 @@ public class UwUBot
         }
         int psn = findKeyword (statement, "I want", 0);
         String restOfStatement = statement.substring(psn + 6).trim();
-        return "Would you be happy if you had " + restOfStatement + " to play?";
+        return "Would you be happy if you had " + restOfStatement + "?";
+    }
+    
+    /**
+     * Take a statement with "I like <something>." and transform it into 
+     * "Why do you like <something>?"
+     * @param statement the user statement, assumed to contain "I want to"
+     * @return the transformed statement
+     */
+    private String transformILikeStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "I like", 0);
+        String restOfStatement = statement.substring(psn + 6).trim();
+        return "Why do you like " + restOfStatement + "?";
     }
 
     /**
@@ -262,16 +288,12 @@ public class UwUBot
 
         int psnOfI = findKeyword (statement, "i", 0);
         int psnOfYou = findKeyword (statement, "you", psnOfI + 1);
-        if (psnOfYou >= 0 || psnOfI >= 0){
-        return getRandomResponse();
-      }
-      else
-      {
+        
         String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
         return "Why do you " + restOfStatement + " me?";
       
+    
     }
-}
     
     
     
