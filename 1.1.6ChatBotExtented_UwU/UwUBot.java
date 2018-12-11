@@ -40,6 +40,9 @@ public class UwUBot
         || findKeyword(statement, "greetings") >= 0)
         {
             response = "Hello!";
+        }else if(findKeyword(statement, "created you", 0) >= 0)
+        {
+            response = "These fabulous student by the name of, CATRINA MAI, NICK ROCCHI, ROY LIN. \n Please help Catrina. \n\n She needs sleep.";
         }
         else if(findKeyword(statement, "I play games", 0) >= 0)
         {
@@ -54,7 +57,7 @@ public class UwUBot
         }else if (findKeyword(statement, "my name is") >= 0)
         {
             response = transformNameStatement(statement);
-        } else if(findKeyword(statement, "what is your name") >= 0)
+        } else if(findKeyword(statement, "your name") >= 0)
         {
             response = "My name is, UwU! Nice to meet you!";
         }
