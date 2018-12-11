@@ -41,6 +41,13 @@ public class UwUBot
         {
             response = "Hello!";
         }
+        else if(findKeyword(statement, "I play games", 0) >= 0)
+        {
+            response = "What games do you play?";
+        }else if(findKeyword(statement, "lol", 0) >= 0)
+        {
+            response = "XD";
+        }
         else if(findKeyword(statement, "I like", 0) >= 0)
         {
             response = transformILikeStatement(statement);
@@ -361,7 +368,7 @@ public class UwUBot
      */
     private String getRandomResponse()
     {
-        final int NUMBER_OF_RESPONSES = 4;
+        final int NUMBER_OF_RESPONSES = 5;
         double r = Math.random();
         int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
         String response = "";
@@ -381,6 +388,10 @@ public class UwUBot
         else if (whichResponse == 3)
         {
             response = "You don't say.";
+        }
+        else if (whichResponse == 3)
+        {
+            response = "Hehe. No reponse.";
         }
 
         return response;
