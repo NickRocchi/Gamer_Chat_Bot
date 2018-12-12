@@ -2,6 +2,7 @@
 dependency1.from=UwURunner
 dependency1.to=UwUBot
 dependency1.type=UsesDependency
+<<<<<<< HEAD
 editor.fx.0.height=739
 editor.fx.0.width=816
 editor.fx.0.x=161
@@ -15,6 +16,21 @@ package.editor.width=670
 package.editor.x=722
 package.editor.y=565
 package.frame.height=600
+=======
+editor.fx.0.height=1056
+editor.fx.0.width=1936
+editor.fx.0.x=-8
+editor.fx.0.y=-8
+objectbench.height=93
+objectbench.width=760
+package.divider.horizontal=0.6
+package.divider.vertical=0.7950819672131147
+package.editor.height=381
+package.editor.width=670
+package.editor.x=-1047
+package.editor.y=343
+package.frame.height=588
+>>>>>>> 5446cd6cc6f9c347d7a0713ceec86a6fc26d63bd
 package.frame.width=800
 package.numDependencies=1
 package.numTargets=2

@@ -64,11 +64,21 @@ public class UwUBot
         else if(findKeyword(statement, "lol", 0) >= 0)
         {
             response = "XD";
+        }else if(findKeyword(statement, "I like you", 0) >=0)
+        
+        {
+            response = getRudeRandomResponse();
         }
         else if(findKeyword(statement, "I like", 0) >= 0)
         {
             response = transformILikeStatement(statement);
-        }else if (findKeyword(statement, "my name is") >= 0)
+        }
+        else if(findKeyword(statement, "I hate", 0) >= 0)
+            {
+            response = transformIHateStatement(statement);
+        }
+        
+        else if (findKeyword(statement, "my name is") >= 0)
         {
             response = transformNameStatement(statement);
         } else if(findKeyword(statement, "your name") >= 0)
@@ -82,7 +92,7 @@ public class UwUBot
 
         else if (findKeyword(statement, "no") >= 0)
         {
-            response = "Why so negative?";
+            response = getRudeRandomResponse();
         }
         else if (findKeyword(statement, "I want to play", 0) >= 0)
         {
@@ -147,13 +157,15 @@ public class UwUBot
         else if (findKeyword(statement, "me") >= 0)
             {
                 response = transformYouMeStatement(statement);
-            }else if (findKeyword(statement, "my") >= 0)
+            }
+        else if (findKeyword(statement, "my") >= 0)
             {
                 response = mySelfStatement(statement);
             }
             else if(findKeyword(statement, "i") >= 0){
                 response = transformIYouStatement(statement);
             }
+            
             else 
             {
                 response = getRandomResponse();
@@ -462,6 +474,29 @@ public class UwUBot
         String restOfStatement = statement.substring(psn + 6).trim();
         return "Why do you like " + restOfStatement + "?";
     }
+    
+    /**
+     * Take a statement with "I hate <something>." and transform it into 
+     * "Why do you hate <something>?"
+     * @param statement the user statement, assumed to contain "I hate"
+     * @return the transformed statement
+     */
+    private String transformIHateStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "I hate", 0);
+        String restOfStatement = statement.substring(psn + 6).trim();
+        return "Why do you hate " + restOfStatement + "?";
+    }
+
 
     /**
      * Take a statement with "you <something> me" and transform it into 
@@ -533,11 +568,11 @@ public class UwUBot
 
         int psnOfI = findKeyword (statement, "i", 0);
         int psnOfYou = findKeyword (statement, "you", psnOfI + 1);
-        
+       
         String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
         return "Why do you " + restOfStatement + " me?";
       
-    
+   
     }
     
     
@@ -634,5 +669,39 @@ public class UwUBot
 
         return response;
     }
+    
+    /**
+     * Pick a default response to use if nothing else fits.
+     * @return a non-committal string
+     */
+    private String getRudeRandomResponse()
+    {
+        final int NUMBER_OF_RESPONSES = 5;
+        double r = Math.random();
+        int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
+        String response = "";
 
+        if (whichResponse == 0)
+        {
+            response = "Well, that pretty morbid";
+        }
+        else if (whichResponse == 1)
+        {
+            response = "Ima finna be honest I'm not interested";
+        }
+        else if (whichResponse == 2)
+        {
+            response = "Are you... are you sure?";
+        }
+        else if (whichResponse == 3)
+        {
+            response = "I don't care.";
+        }
+        else if (whichResponse == 4)
+        {
+            response = "That's not very cash money of you.";
+        }
+
+        return response;
+    }
 }
