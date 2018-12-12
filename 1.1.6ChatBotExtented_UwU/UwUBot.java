@@ -96,18 +96,51 @@ public class UwUBot
             response = transformIWantStatement(statement);
         } 
         
-        else if (findKeyword(statement, "league of legends") >= 0
-        || findKeyword(statement, "smash bros") >= 0
-        || findKeyword(statement, "halo") >= 0
-        || findKeyword(statement, "pokemon") >= 0
-        )
-        {
-            response = "Tell me more about the games you play.";
-        }else if (findKeyword(statement, "myself") >= 0)
-            {
+            else if (findKeyword(statement, "league of legends") >= 0
+            || findKeyword(statement, "halo") >= 0
+            || findKeyword(statement, "pokemon") >= 0){
+                response = "Tell me more about the games you play.";
+            }
+            
+            else if (findKeyword(statement, "myself") >= 0){
                 response = "Why? D:";
             }
        
+            else if (findKeyword(statement, "Smash bros.", 0) >= 0){
+            smashBotActivate(statement);
+            } 
+            
+            else if (findKeyword(statement, "Mario") >= 0){
+                response = transformMarioStatement(statement);
+            }
+        
+            else if (findKeyword(statement, "Donkey Kong") >= 0){
+                response =transformKongStatement(statement);
+            }
+            
+            else if (findKeyword(statement, "Link") >= 0){
+                response =transformLinkStatement(statement);
+            }
+            
+            else if (findKeyword(statement, "Samus") >= 0){
+                response =transformSamusStatement(statement);
+            }
+            
+            else if (findKeyword(statement, "Yoshi") >= 0){
+                 response =transformYoshiStatement(statement);
+            }
+            
+            else if (findKeyword(statement, "Kirby") >= 0){
+                response =transformKirbyStatement(statement);
+            }
+            
+            else if (findKeyword(statement, "Fox") >= 0){
+                response =transformFoxStatement(statement);
+            }
+            
+            else if (findKeyword(statement, "Pikachu") >= 0){
+                response =transformPikachuStatement(statement);
+        }
         // Responses which require transformations
         
 
@@ -170,6 +203,198 @@ public class UwUBot
         int psn = findKeyword (statement, "my name is", 0);
         String restOfStatement = statement.substring(psn + 10).trim();
         return "Hello, " + restOfStatement + "!";
+    }
+    
+    
+    /**
+    * Takes statement with smash bros in it and calls this method to ask what thier fav topic is
+     */
+     private String smashBotActivate (String statement){
+        String response = "";
+        System.out.println("Oh, Smash Bros! Like the one that came out Friday! /n I actually have some data on some stuff for that! /n Ask me for a fighter and I'll se if I have some info!");
+        fighterSelect (statement);
+        return response;
+    }
+    
+    private String fighterSelect(String statement){  
+        String response = "";
+        System.out.println("I've got a tad bit of info on the first 8 /n characters Which one do you want to hear about?");
+        return response;
+    }
+     /**
+     * Take a statement with "Mario" and transform it into 
+     * prints info about Mario
+     * @param statement the user statement, assumed to contain "Mario"
+     * @return the transformed statement
+     */
+     private String transformMarioStatement(String statement)
+     {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Mario", 0);
+        String restOfStatement = statement.substring(psn + 5).trim();
+        return "Ah, yes! “Mr. Video Game Himself”, the first \n of the fighters and from Super Mario! \n His final smash is Mario Finale, sending \n his opponents offstage with a massive \n fireball.";
+     }
+    
+    /**
+     * Take a statement with "Donkey Kong" and transform it into 
+     * prints info about Donkey Kong
+     * @param statement the user statement, assumed to contain "Donkey Kong"
+     * @return the transformed statement
+     */
+     private String transformKongStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Donkey Kong", 0);
+        String restOfStatement = statement.substring(psn + 11).trim();
+        return "The massive “King of the Jungle”: Donkey Kong! \n This giant brute of a gorilla from the series \n Donkey Kong packs a big punch, as seen \n in his final smash: Jungle Rush. A flurry \n of punches is hurled at the enemy \n with a finishing blow to send them flying.";
+    }
+    
+    /**
+     * Take a statement with "Link" and transform it into 
+     * prints info about Link
+     * @param statement the user statement, assumed to contain "Link"
+     * @return the transformed statement
+     */
+     private String transformLinkStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Link", 0);
+        String restOfStatement = statement.substring(psn + 4).trim();
+        return "Link, the fated “Champion of Hyrule”, \n comes from the Legend of Zelda series. \n His final smash uses his archery skills to \n wield his ancient bow and arrow to \n pierce his enemies and send them rocketing \n to their doom.";
+    }
+    
+    /**
+     * Take a statement with "Samus" and transform it into 
+     * prints info about Samus
+     * @param statement the user statement, assumed to contain "Samus"
+     * @return the transformed statement
+     */
+     private String transformSamusStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Samus", 0);
+        String restOfStatement = statement.substring(psn + 5).trim();
+        return "Samus Aran doesn’t take her title of “Bounty Hunter \n Extraordinaire” lightly. Having fought through \n numerous planets to be the bird-raised \n B.A. Her final smash, Zero Laser, fires a giant \n beam into your target and launches \n them off the stage.";
+    }
+    
+    /**
+     * Take a statement with "Yoshi" and transform it into 
+     * prints info about Yoshi
+     * @param statement the user statement, assumed to contain "Yoshi"
+     * @return the transformed statement
+     */
+     private String transformYoshiStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Yoshi", 0);
+        String restOfStatement = statement.substring(psn + 5).trim();
+        return "As the “Omnivore of the Year”, Yoshi \n comes as character 5 from the “Yoshi’s Island” \n series. His final smash, stampede, \n sends a… stampede of other yoshi’s into \n the enemy!";
+    }
+    
+    /**
+     * Take a statement with "Kirby" and transform it into 
+     * prints info about Kirby
+     * @param statement the user statement, assumed to contain "Kirby"
+     * @return the transformed statement
+     */
+     private String transformKirbyStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Kirby", 0);
+        String restOfStatement = statement.substring(psn + 5).trim();
+        return "Kirby might be the “cutest” character in \n Smash Bros, but others know why he’s called \n “The Pink Demon”. His final smash, Ultra \n Sword, straight from his own series, \n “Kirby”, has him slashing his enemies with a \n massive blade before delivering a decisive blow.";
+    }
+    
+    /**
+     * Take a statement with "Fox" and transform it into 
+     * prints info about Fox
+     * @param statement the user statement, assumed to contain "Fox"
+     * @return the transformed statement
+     */
+     private String transformFoxStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Fox", 0);
+        String restOfStatement = statement.substring(psn + 3).trim();
+        return "Fox McCloud, leader of Star Fox, and coming \n from a franchise of the same name, is \n a fast and hard hitting fighter. \n His final smash, simply called “Team Star Fox” \n has him piloting his ship, the R-wing, \n to blast opposing fighters into oblivion.";
+    }
+    
+    /**
+     * Take a statement with "Pikachu" and transform it into 
+     * prints info about Pikachu
+     * @param statement the user statement, assumed to contain "Pikachu"
+     * @return the transformed statement
+     */
+     private String transformPikachuStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "Pikachu", 0);
+        String restOfStatement = statement.substring(psn + 7).trim();
+        return "Pikachu is the last of the original 8 fighters. \n The only line he can spit out is “pika pika”, \n but he’s a memorable character nonetheless. \n His final smash, volt tackle, has him \n engulfed in a ball of electricity as he \n charges through his opponents!";
     }
     
     /**
