@@ -31,15 +31,16 @@ public class UwUBot
     public String getResponse(String statement)
     {
         String response = "";
-        int psn = findKeyword(statement, "you", 0);
-        int psn1 = findKeyword(statement, "i", 0);
-        int psn2 = findKeyword(statement, "my", 0);
+        
         if (findKeyword(statement, "hello") >= 0
         || findKeyword(statement, "hi") >= 0
         || findKeyword(statement, "hai") >= 0
         || findKeyword(statement, "greetings") >= 0)
         {
             response = "Hello!";
+        }else if(findKeyword(statement, "created smash bros", 0) >= 0)
+        {
+            response = "Smash bros was created by Nintendo. \nThe main developer and or author was Masahiro Sakurai!   ";
         }else if(findKeyword(statement, "created you", 0) >= 0)
         {
             response = "These fabulous student by the name of, CATRINA MAI, NICK ROCCHI, ROY LIN. \n Please help Catrina. \n\n She needs sleep.";
@@ -102,27 +103,23 @@ public class UwUBot
         )
         {
             response = "Tell me more about the games you play.";
-        }
+        }else if (findKeyword(statement, "myself") >= 0)
+            {
+                response = "Why? D:";
+            }
        
         // Responses which require transformations
         
 
-        else 
-        
-            // Look for a two word (you <something> me)
-            // pattern
-            if (psn >= 0
-            && findKeyword(statement, "me", psn) >= 0)
+        else if (findKeyword(statement, "me") >= 0)
             {
                 response = transformYouMeStatement(statement);
-            }
-            else if(psn1 >= 0
-            && findKeyword(statement, "i", psn1) >= 0){
-                response = transformIYouStatement(statement);
-            }else if (psn >= 0
-            && findKeyword(statement, "my", psn2) >= 0)
+            }else if (findKeyword(statement, "my") >= 0)
             {
                 response = mySelfStatement(statement);
+            }
+            else if(findKeyword(statement, "i") >= 0){
+                response = transformIYouStatement(statement);
             }
             else 
             {
@@ -134,7 +131,7 @@ public class UwUBot
     /**
      * Take a statement with "I want to play" and transform it into 
      * "What is so fun about " + restOfStatement + "?"
-     * @param statement the user statement, assumed to contain "I want to"
+     * @param statement the user statement, assumed to contain "I want to play"
      * @return the transformed statement
      */
     private String transformWantToPlayStatement(String statement)
@@ -155,7 +152,7 @@ public class UwUBot
     
      /**
      * Take a statement with "My name is *insert name*" and transform it into 
-     * "" + restOfStatement + "! Nice to meet you!"
+     * "Hello, " + restOfStatement + "!"
      * @param statement the user statement, assumed to contain "My name is"
      * @return the transformed statement
      */
@@ -172,7 +169,7 @@ public class UwUBot
         }
         int psn = findKeyword (statement, "my name is", 0);
         String restOfStatement = statement.substring(psn + 10).trim();
-        return "Hello, " + restOfStatement + "! Nice to meet you!";
+        return "Hello, " + restOfStatement + "!";
     }
     
     /**
@@ -200,7 +197,7 @@ public class UwUBot
     /**
      * Take a statement with "I want <something>." and transform it into 
      * "Would you be happy if you had <something>?"
-     * @param statement the user statement, assumed to contain "I want to"
+     * @param statement the user statement, assumed to contain "I want"
      * @return the transformed statement
      */
     private String transformIWantStatement(String statement)
@@ -222,7 +219,7 @@ public class UwUBot
     /**
      * Take a statement with "I like <something>." and transform it into 
      * "Why do you like <something>?"
-     * @param statement the user statement, assumed to contain "I want to"
+     * @param statement the user statement, assumed to contain "I like"
      * @return the transformed statement
      */
     private String transformILikeStatement(String statement)
@@ -267,9 +264,9 @@ public class UwUBot
     }
 
        /**
-     * Take a statement with "you <something> me" and transform it into 
+     * Take a statement with "i <something> my" and transform it into 
      * "What makes you think that I <something> you?"
-     * @param statement the user statement, assumed to contain "you" followed by "me"
+     * @param statement the user statement, assumed to contain "i" followed by "my"
      * @return the transformed statement
      */
     private String mySelfStatement(String statement)
@@ -288,7 +285,7 @@ public class UwUBot
         int psnOfMy = findKeyword (statement, "my", psnOfI + 1);
 
         String restOfStatement = statement.substring(psnOfI + 1, psnOfMy).trim();
-        return "Why do you " + restOfStatement + " yourself?";
+        return "Why do you " + restOfStatement + " that?";
     }
     
     /**
