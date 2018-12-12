@@ -64,11 +64,19 @@ public class UwUBot
         else if(findKeyword(statement, "lol", 0) >= 0)
         {
             response = "XD";
+        }else if(findKeyword(statement, "hate", 0) >= 0)
+            {
+            response = transformIHateStatement(statement);
+        }else if(findKeyword(statement, "I like", 0) >= 0)
+        {
+            response = getRudeRandomResponse();
         }
         else if(findKeyword(statement, "I like", 0) >= 0)
         {
             response = transformILikeStatement(statement);
-        }else if (findKeyword(statement, "my name is") >= 0)
+        }
+        
+        else if (findKeyword(statement, "my name is") >= 0)
         {
             response = transformNameStatement(statement);
         } else if(findKeyword(statement, "your name") >= 0)
@@ -114,13 +122,15 @@ public class UwUBot
         else if (findKeyword(statement, "me") >= 0)
             {
                 response = transformYouMeStatement(statement);
-            }else if (findKeyword(statement, "my") >= 0)
+            }
+        else if (findKeyword(statement, "my") >= 0)
             {
                 response = mySelfStatement(statement);
             }
             else if(findKeyword(statement, "i") >= 0){
                 response = transformIYouStatement(statement);
             }
+            
             else 
             {
                 response = getRandomResponse();
@@ -237,6 +247,29 @@ public class UwUBot
         String restOfStatement = statement.substring(psn + 6).trim();
         return "Why do you like " + restOfStatement + "?";
     }
+    
+    /**
+     * Take a statement with "I hate <something>." and transform it into 
+     * "Why do you hate <something>?"
+     * @param statement the user statement, assumed to contain "I hate"
+     * @return the transformed statement
+     */
+    private String transformIHateStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "I hate", 0);
+        String restOfStatement = statement.substring(psn + 6).trim();
+        return "Why do you hate " + restOfStatement + "?";
+    }
+
 
     /**
      * Take a statement with "you <something> me" and transform it into 
@@ -308,11 +341,11 @@ public class UwUBot
 
         int psnOfI = findKeyword (statement, "i", 0);
         int psnOfYou = findKeyword (statement, "you", psnOfI + 1);
-        
+       
         String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
         return "Why do you " + restOfStatement + " me?";
       
-    
+   
     }
     
     
