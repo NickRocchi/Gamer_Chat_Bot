@@ -64,16 +64,18 @@ public class UwUBot
         else if(findKeyword(statement, "lol", 0) >= 0)
         {
             response = "XD";
-        }else if(findKeyword(statement, "hate", 0) >= 0)
-            {
-            response = transformIHateStatement(statement);
-        }else if(findKeyword(statement, "I like you", 0) >= 0)
+        }else if(findKeyword(statement, "I like you", 0) >=0)
+        
         {
             response = getRudeRandomResponse();
         }
         else if(findKeyword(statement, "I like", 0) >= 0)
         {
             response = transformILikeStatement(statement);
+        }
+        else if(findKeyword(statement, "I hate", 0) >= 0)
+            {
+            response = transformIHateStatement(statement);
         }
         
         else if (findKeyword(statement, "my name is") >= 0)
