@@ -43,7 +43,7 @@ public class UwUBot
             response = "Smash bros was created by Nintendo. \nThe main developer and or author was Masahiro Sakurai!   ";
         }else if(findKeyword(statement, "created you", 0) >= 0)
         {
-            response = "These fabulous student by the name of, CATRINA MAI, NICK ROCCHI, ROY LIN. \n Please help Catrina. \n\n She needs sleep.";
+            response = "These fabulous students by the name of, CATRINA MAI, NICK ROCCHI, ROY LIN. \n Please help Catrina. \n\n She needs sleep.";
         }
         else if(findKeyword(statement, "I play games", 0) >= 0)
         {
