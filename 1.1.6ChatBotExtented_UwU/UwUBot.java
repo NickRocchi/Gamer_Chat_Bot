@@ -82,7 +82,7 @@ public class UwUBot
 
         else if (findKeyword(statement, "no") >= 0)
         {
-            response = "Why so negative?";
+            response = getRudeRandomResponse();
         }
         else if (findKeyword(statement, "I want to play", 0) >= 0)
         {
@@ -409,5 +409,39 @@ public class UwUBot
 
         return response;
     }
+    
+    /**
+     * Pick a default response to use if nothing else fits.
+     * @return a non-committal string
+     */
+    private String getRudeRandomResponse()
+    {
+        final int NUMBER_OF_RESPONSES = 5;
+        double r = Math.random();
+        int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
+        String response = "";
 
+        if (whichResponse == 0)
+        {
+            response = "Well, that pretty morbid";
+        }
+        else if (whichResponse == 1)
+        {
+            response = "Ima finna be honest I'm not interested";
+        }
+        else if (whichResponse == 2)
+        {
+            response = "Are you... are you sure?";
+        }
+        else if (whichResponse == 3)
+        {
+            response = "I don't care.";
+        }
+        else if (whichResponse == 4)
+        {
+            response = "That's not very cash money of you.";
+        }
+
+        return response;
+    }
 }
