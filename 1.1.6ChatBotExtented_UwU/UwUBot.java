@@ -76,12 +76,16 @@ public class UwUBot
         else if(findKeyword(statement, "I hate", 0) >= 0)
             {
             response = transformIHateStatement(statement);
+        }else if (findKeyword(statement, "I'm") >=0)
+        {
+            response = transformIAmNameStatement(statement);
         }
         
         else if (findKeyword(statement, "my name is") >= 0)
         {
             response = transformNameStatement(statement);
-        } else if(findKeyword(statement, "your name") >= 0)
+        }
+        else if(findKeyword(statement, "your name") >= 0)
         {
             response = "My name is, UwU!";
         }
@@ -217,6 +221,27 @@ public class UwUBot
         return "Hello, " + restOfStatement + "!";
     }
     
+    /**
+     * Take a statement with "I'm *INSERT NAME" and transform it into 
+     * "Hello, " + restOfStatement + "!"
+     * @param statement the user statement, assumed to contain "I'm"
+     * @return the transformed statement
+     */
+    private String transformIAmNameStatement(String statement)
+    {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement
+                .length() - 1);
+        }
+        int psn = findKeyword (statement, "I'm", 0);
+        String restOfStatement = statement.substring(psn + 3).trim();
+        return "Hello, " + restOfStatement + "!";
+    }
     
     /**
     * Takes statement with smash bros in it and calls this method to ask what thier fav topic is
